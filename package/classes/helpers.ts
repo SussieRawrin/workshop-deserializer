@@ -11,6 +11,7 @@ import {
 } from './leaves';
 
 import { hardtypes } from '../hardtypes';
+import VoidLeaf from './leaves/Void';
 
 /* detects type and returns new leaf node */
 export function newLeaf(nodeText: string, name: string): LeafNode {
@@ -87,7 +88,21 @@ export function dataTree(workshopText: string): Container {
           if (!depth && !!falgii) {
 
             const boxText = workshopText.substring(falgii + 1, i);
-            const name = workshopText.substring(workshopText.substring(0, falgii).lastIndexOf('}') + 1, falgii).trim();
+            let name = workshopText.substring(workshopText.substring(0, falgii).lastIndexOf('}') + 1, falgii).trim();
+
+            /* \n indicated empty blocks */
+            /* ex: "Deathmatch\n\n\t\tdisabled Elimination" */
+            if (name.includes('\n')) {
+
+              const n = name.split('\n').map((x) => x.trim());
+
+              n.slice(0, n.length - 1).filter((x) => x.length).forEach((x) => {
+                findings.set(x, new VoidLeaf());
+              });
+
+              name = n[n.length - 1];
+            }
+
             const boxes = dataTree(boxText);
 
             if (!boxes.size) {

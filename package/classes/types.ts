@@ -41,4 +41,6 @@ export type CodeBlock = Array<string>;
 
 export type Unknown = Array<string>;
 
-export type Any = Dictionary | Variables | Set | CodeBlock;
+export type Void = false;
+
+export type Any = Dictionary | Variables | Set | CodeBlock | Void;
