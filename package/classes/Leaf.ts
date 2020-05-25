@@ -7,7 +7,7 @@ export default abstract class LeafNode {
   readonly #dataText: Array<string>;
 
   /* deserialized data */
-  readonly value: object;
+  readonly value: unknown;
 
   /* new xyz() */
   constructor(dataText: string) {
