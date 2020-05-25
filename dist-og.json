@@ -1,0 +1,335 @@
+{
+    "settings": {
+        "lobby": {
+            "type": "DICTIONARY",
+            "data": {
+                "Allow Players Who Are In Queue": "Yes",
+                "Data Center Preference": "Brazil",
+                "Map Rotation": "After A Game",
+                "Match Voice Chat": "Enabled",
+                "Max Spectators": 12,
+                "Return To Lobby": "Never",
+                "Team Balancing": "After A Mirror Match",
+                "Use Experimental Update If Available": "Yes"
+            }
+        },
+        "modes": {
+            "disabled Assault": {
+                "type": "DICTIONARY",
+                "data": {
+                    "Competitive Rules": "On",
+                    "Game Mode Start": "Manual",
+                    "Health Pack Respawn Time Scalar": "10%",
+                    "Respawn Time Scalar": "0%"
+                }
+            },
+            "disabled Capture the Flag": {
+                "type": "DICTIONARY",
+                "data": {
+                    "Game Mode Start": "Manual",
+                    "Health Pack Respawn Time Scalar": "10%",
+                    "Respawn Time Scalar": "0%"
+                }
+            },
+            "disabled Control": {
+                "type": "DICTIONARY",
+                "data": {
+                    "Game Mode Start": "Manual",
+                    "Health Pack Respawn Time Scalar": "10%",
+                    "Respawn Time Scalar": "0%",
+                    "Score To Win": 3
+                }
+            },
+            "Deathmatch\n\n\t\tdisabled Elimination": {
+                "type": "DICTIONARY",
+                "data": {
+                    "Game Mode Start": "Manual",
+                    "Health Pack Respawn Time Scalar": "10%",
+                    "Respawn Time Scalar": "0%"
+                }
+            },
+            "disabled Escort": {
+                "type": "DICTIONARY",
+                "data": {
+                    "Competitive Rules": "On",
+                    "Game Mode Start": "Manual",
+                    "Health Pack Respawn Time Scalar": "10%",
+                    "Respawn Time Scalar": "0%"
+                }
+            },
+            "disabled Hybrid": {
+                "type": "DICTIONARY",
+                "data": {
+                    "Competitive Rules": "On",
+                    "Game Mode Start": "Manual",
+                    "Health Pack Respawn Time Scalar": "10%",
+                    "Respawn Time Scalar": "0%"
+                }
+            },
+            "disabled Skirmish": {
+                "type": "DICTIONARY",
+                "data": {
+                    "Game Mode Start": "Manual",
+                    "Health Pack Respawn Time Scalar": "10%",
+                    "Respawn Time Scalar": "0%"
+                }
+            },
+            "disabled Team Deathmatch": {
+                "type": "DICTIONARY",
+                "data": {
+                    "Game Mode Start": "Manual",
+                    "Health Pack Respawn Time Scalar": "10%",
+                    "Respawn Time Scalar": "0%"
+                }
+            },
+            "General": {
+                "type": "DICTIONARY",
+                "data": {
+                    "Hero Limit": "Off"
+                }
+            }
+        }
+    },
+    "rule(\"respawn (owner only)\")": {
+        "event": {
+            "type": "CODE BLOCK",
+            "data": [
+                "Ongoing - Each Player;",
+                "All;",
+                "All;"
+            ]
+        },
+        "conditions": {
+            "type": "CODE BLOCK",
+            "data": [
+                "Compare(True, ==, True) == True;",
+                "Is Button Held(Event Player, Ultimate) == True;",
+                "Hero Of(Event Player) != Hero(Zarya);"
+            ]
+        },
+        "actions": {
+            "type": "CODE BLOCK",
+            "data": [
+                "Resurrect(Event Player);"
+            ]
+        }
+    },
+    "rule(\"Rule 6\")": {
+        "event": {
+            "type": "CODE BLOCK",
+            "data": [
+                "Ongoing - Each Player;",
+                "All;",
+                "McCree;"
+            ]
+        },
+        "conditions": {
+            "type": "CODE BLOCK",
+            "data": [
+                "Is Button Held(Event Player, Ultimate) == True;"
+            ]
+        },
+        "actions": {
+            "type": "CODE BLOCK",
+            "data": [
+                "Set Ultimate Charge(Event Player, 100);",
+                "Wait(0.016, Ignore Condition);",
+                "Abort If Condition Is False;",
+                "Set Status(Event Player, Null, Knocked Down, 0.016);",
+                "disabled Wait(0.016, Ignore Condition);",
+                "Press Button(Event Player, Ultimate);",
+                "Stop Holding Button(Event Player, Ultimate);",
+                "disabled Wait(0.016, Ignore Condition);",
+                "Loop If Condition Is True;"
+            ]
+        }
+    },
+    "rule(\"ana spam nades\")": {
+        "event": {
+            "type": "CODE BLOCK",
+            "data": [
+                "Ongoing - Each Player;",
+                "All;",
+                "McCree;"
+            ]
+        },
+        "conditions": {
+            "type": "CODE BLOCK",
+            "data": [
+                "Is Button Held(Event Player, Ability 2) == True;",
+                "Is Button Held(Event Player, Interact) == False;"
+            ]
+        },
+        "actions": {
+            "type": "CODE BLOCK",
+            "data": [
+                "Set Status(Event Player, Null, Knocked Down, 0.001);",
+                "Wait(0.016, Ignore Condition);",
+                "Press Button(Event Player, Ability 2);",
+                "Wait(0.016, Ignore Condition);",
+                "Loop;"
+            ]
+        }
+    },
+    "rule(\"ana spam naps\")": {
+        "event": {
+            "type": "CODE BLOCK",
+            "data": [
+                "Ongoing - Each Player;",
+                "All;",
+                "Ana;"
+            ]
+        },
+        "conditions": {
+            "type": "CODE BLOCK",
+            "data": [
+                "Is Button Held(Event Player, Ability 1) == True;",
+                "Is Button Held(Event Player, Interact) == False;"
+            ]
+        },
+        "actions": {
+            "type": "CODE BLOCK",
+            "data": [
+                "Wait(0.300, Ignore Condition);",
+                "Set Status(Event Player, Null, Knocked Down, 0.001);",
+                "Press Button(Event Player, Ability 1);",
+                "Wait(0.016, Ignore Condition);",
+                "Loop;"
+            ]
+        }
+    },
+    "rule(\"500% firerate\")": {
+        "event": {
+            "type": "CODE BLOCK",
+            "data": [
+                "Ongoing - Each Player;",
+                "All;",
+                "All;"
+            ]
+        },
+        "actions": {
+            "type": "CODE BLOCK",
+            "data": [
+                "Set Projectile Speed(Event Player, 200);",
+                "Wait(0.001, Ignore Condition);",
+                "Loop;"
+            ]
+        }
+    },
+    "rule(\"Rule 1\")": {
+        "event": {
+            "type": "CODE BLOCK",
+            "data": [
+                "Ongoing - Each Player;",
+                "All;",
+                "McCree;"
+            ]
+        },
+        "conditions": {
+            "type": "CODE BLOCK",
+            "data": [
+                "Is Button Held(Event Player, Secondary Fire) == True;",
+                "Hero Of(Event Player) != Hero(Brigitte);",
+                "disabled Is Button Held(Event Player, Secondary Fire) == False;"
+            ]
+        },
+        "actions": {
+            "type": "CODE BLOCK",
+            "data": [
+                "disabled Wait(0.016, Ignore Condition);",
+                "Abort If Condition Is False;",
+                "Set Status(Event Player, Null, Knocked Down, 0.016);",
+                "Wait(0.016, Ignore Condition);",
+                "Press Button(Event Player, Secondary Fire);",
+                "disabled Wait(0.016, Ignore Condition);",
+                "Stop Holding Button(Event Player, Secondary Fire);",
+                "Loop If Condition Is True;"
+            ]
+        }
+    },
+    "rule(\"Ult zarya\")": {
+        "event": {
+            "type": "CODE BLOCK",
+            "data": [
+                "Ongoing - Each Player;",
+                "All;",
+                "Zarya;"
+            ]
+        },
+        "conditions": {
+            "type": "CODE BLOCK",
+            "data": [
+                "Is Button Held(Event Player, Ultimate) == True;"
+            ]
+        },
+        "actions": {
+            "type": "CODE BLOCK",
+            "data": [
+                "Set Ultimate Charge(Event Player, 100);",
+                "disabled Wait(0.016, Ignore Condition);",
+                "Abort If Condition Is False;",
+                "Set Status(Event Player, Null, Knocked Down, 0.016);",
+                "Wait(0.016, Ignore Condition);",
+                "Press Button(Event Player, Ultimate);",
+                "Stop Holding Button(Event Player, Ultimate);",
+                "disabled Wait(0.016, Ignore Condition);",
+                "Loop If Condition Is True;",
+                "Set Damage Dealt(Players On Hero(Hero(Zarya), All Teams), 1000);"
+            ]
+        }
+    },
+    "rule(\"cancel her ult\")": {
+        "event": {
+            "type": "CODE BLOCK",
+            "data": [
+                "Ongoing - Each Player;",
+                "All;",
+                "Zarya;"
+            ]
+        },
+        "conditions": {
+            "type": "CODE BLOCK",
+            "data": [
+                "Is Button Held(Event Player, Ability 1) == True;"
+            ]
+        },
+        "actions": {
+            "type": "CODE BLOCK",
+            "data": [
+                "Wait(0.016, Ignore Condition);",
+                "Abort If Condition Is False;",
+                "Set Status(Event Player, Null, Knocked Down, 0.016);",
+                "disabled Wait(0.016, Ignore Condition);",
+                "Press Button(Event Player, Ability 1);",
+                "Wait(0.016, Ignore Condition);",
+                "Stop Holding Button(Event Player, Ability 1);",
+                "Loop If Condition Is True;"
+            ]
+        }
+    },
+    "rule(\"Rule 10\")": {
+        "event": {
+            "type": "CODE BLOCK",
+            "data": [
+                "Ongoing - Global;"
+            ]
+        }
+    },
+    "rule(\"Regra 31\")": {
+        "event": {
+            "type": "CODE BLOCK",
+            "data": [
+                "Ongoing - Each Player;",
+                "All;",
+                "All;"
+            ]
+        },
+        "actions": {
+            "type": "CODE BLOCK",
+            "data": [
+                "Set Projectile Gravity(All Players(All Teams), 0);",
+                "Set Projectile Speed(All Players(All Teams), 2);"
+            ]
+        }
+    }
+}
