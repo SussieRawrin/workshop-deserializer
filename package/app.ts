@@ -19,7 +19,7 @@ const data = fs.readFileSync(`${__dirname}${path.sep}VCC9V.txt`, { encoding: 'ut
 */
 
 const workshopData = getData(data.trim());
-console.log(util.inspect(workshopData, false, null, true));
+// console.log(util.inspect(workshopData, false, null, true));
 // console.log('\n\n\n\n');
 
 // console.clear();
