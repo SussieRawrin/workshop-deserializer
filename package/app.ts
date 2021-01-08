@@ -2,33 +2,93 @@ const fs = require('fs');
 const path = require('path');
 const util = require('util');
 
-import { getData } from './parser';
 
-console.clear();
-const data = fs.readFileSync(`${__dirname}${path.sep}VCC9V.txt`, { encoding: 'utf-8' });
+import { blueBright, greenBright, redBright, yellowBright } from 'chalk';
+import { parse } from './parser';
+import { workshopScript } from './parser/language/global';
 
-/*
-  finds first "}" not in quotes
-  ?? use /g to find multiple
-    /}(?=([^"\\]*(\\.|"([^"\\]*\\.)*[^"\\]*"))*[^"]*$)/g
+enum Mode {
+  develop,
+  production,
+}
 
-    (}(?=([^"\\]*(\\.|"([^"\\]*\\.)*[^"\\]*"))*[^"]*$))
 
-    this works
-    (?<={(?=([^"\\]*(\\.|"([^"\\]*\\.)*[^"\\]*"))*[^"]*$))[^]{0,}?(?=}(?=([^"\\]*(\\.|"([^"\\]*\\.)*[^"\\]*"))*[^"]*$))
-*/
+const execute = (mode: Mode, file: string) => {
+  console.clear();
+  console.log('\n\n\n\n');
 
-const workshopData = getData(data.trim());
-// console.log(util.inspect(workshopData, false, null, true));
-// console.log('\n\n\n\n');
+  /* parse file */
+  const data = fs.readFileSync(`${__dirname}${path.sep}${file}`, { encoding: 'utf-8' })
+  const workshopData = parse(data.trim());
+ 
+  /* output js */
+  /* fs.writeFileSync('dist.js', util.inspect(workshopData, false, null, false)); */
+  /* console.log(util.inspect(workshopData, false, null, true)) */
 
-// console.clear();
+  /* output json (minify code for production) */
+  fs.writeFileSync('dist.json', (mode !== Mode.production) ? JSON.stringify(workshopData, null, 2) : JSON.stringify(workshopScript));
+
+  return workshopData;
+}
+
+const workshopData = execute(
+  Mode.develop,
+  'VCC9V.txt',
+);
+
+const display = (workshopData: any) => {
+
+  workshopData = workshopData?.settings
+  
+  /* description */
+  console.log(
+    'Description', 
+    `"${
+      redBright(
+        workshopData?.main?.description,
+      )
+    }"\n`
+  )
+
+  /* lobby */
+  console.log(
+    'lobby',
+    yellowBright(
+      JSON.stringify(
+        workshopData?.lobby,
+        null, 2
+      )
+    ),
+    '\n',
+  )
+
+  /* modes */
+  console.log(
+    'modes',
+    `"${
+      Object.keys(workshopData?.modes)
+        .filter((m: any) => !m.startsWith('disabled'))
+        .map((m: any) => greenBright(m))
+        .join('", "')
+    }"\n`
+  )
+
+  /* heroes */
+  console.log(
+    'heroes',
+    `"${workshopData?.heroes?.General?.["enabled heroes"]
+      .map((m: any) => blueBright(m))
+      .join('", "')
+    }"\n`
+  )
+        
+}
+
+display(workshopData);
 // console.dir(workshopData);
 
-fs.writeFileSync('dist.js', util.inspect(workshopData, false, null, false));
 
 // todo: minify without spaces for production
-fs.writeFileSync('dist.json', JSON.stringify(workshopData, null, 2));
 
 // console.log('Description:', [
 //   workshopData.get('settings').get('main').get('Description'),
