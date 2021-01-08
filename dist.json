@@ -1,0 +1,64 @@
+{
+  "settings": {
+    "main": {
+      "description": "Welcome to \\\"Blizzard World Escape\\\"! 4 heroes have been trapped in Blizz World and must capture objectives and find the key to escape. Best of luck! (Made by CrimsonRend) [Version 1.2.0] Check out this game on workshop.codes for more info!"
+    },
+    "lobby": {
+      "Allow Players Who Are In Queue": "Yes",
+      "Data Center Preference": "Brazil",
+      "Map Rotation": "After A Game",
+      "Match Voice Chat": "Enabled",
+      "Max Spectators": 12,
+      "Return To Lobby": "Never",
+      "Team Balancing": "After A Mirror Match",
+      "Use Experimental Update If Available": "Yes"
+    },
+    "modes": {
+      "disabled Assault": {
+        "Competitive Rules": "On",
+        "Game Mode Start": "Manual",
+        "Health Pack Respawn Time Scalar": "10%",
+        "Respawn Time Scalar": "0%"
+      },
+      "Deathmatch": {},
+      "disabled Elimination": {
+        "Game Mode Start": "Manual",
+        "Health Pack Respawn Time Scalar": "10%",
+        "Respawn Time Scalar": "0%"
+      },
+      "General": {
+        "Hero Limit": "Off"
+      },
+      "Skirmish": {
+        "enabled maps": [
+          "Blizzard World Winter",
+          "Kanezaka"
+        ]
+      }
+    },
+    "heroes": {
+      "Team 1": {
+        "Ashe": {
+          "Coach Gun Knockback Scalar Enemy": "75%",
+          "Coach Gun Knockback Scalar Self": "75%"
+        },
+        "Mercy": {
+          "Resurrect Cooldown Time": "200%"
+        }
+      },
+      "Team 2": {
+        "disabled heroes": [
+          "Doomfist",
+          "Lúcio"
+        ]
+      },
+      "General": {
+        "enabled heroes": [
+          "Tracer",
+          "Doomfist",
+          "Winston"
+        ]
+      }
+    }
+  }
+}
