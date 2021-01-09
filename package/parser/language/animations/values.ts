@@ -26,11 +26,18 @@ const values = {
     x.integer,
   ),
 
+  variableValue: (x: any) => {
+    return regexp(/[A-z0-9_]+/)
+  },
+
   /* "integer" (Parses at least one number digit, outputs <number>) */
   integer: () => regexp(/[0-9]+/).map((x) => Number(x)),
 
   /* "digits" (Parses at least one number digit, outputs <string>number)*/
   digits: () => regexp(/[0-9]+/),
+
+  /* "code" (Parses any text up to a ;) */
+  code: () => regexp(/.+(?=;)/),
   
 }
 

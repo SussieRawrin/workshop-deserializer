@@ -1,4 +1,4 @@
-import { alt, seq, seqObj, string } from "parsimmon";
+import { alt, digits, notFollowedBy, seq, seqMap, seqObj, string } from "parsimmon";
 import { hardTypes } from "../../../hardtypes";
 
 const boxes = {
@@ -25,7 +25,7 @@ const boxes = {
         .sepBy(x._).skip(seq(x._, string('}')))
 
         /* merge all individual items into a single object */
-        .map((x: any) => x.reduce((_: any, v: any) => ({ ..._, ...v }), {}))
+        .map((x: any) => x.reduce((_: any, v: any) => ({ ..._, ...v }), { }))
 
         /* display hardcoded boxes as tuples (ex. "disabled heroes", "disabled maps") */
         .map ((x: any) => ({
@@ -42,6 +42,74 @@ const boxes = {
     /* transforms data ({ name: 'x', data: { x } } to { x: x }) */
     (x: any) => ({ [x.descriptor]: x.box })
   ),
+
+  /* variables */
+  variables: (x: any) => seqObj(
+    string('variables'),
+      x._,
+    string('{'),
+      x._,
+    (['variables', seqMap(
+      x.gameSettingName,
+        x._,
+      string(':'),
+        x._,
+      seqMap(
+        x.integer,
+          x._,
+        string(':'),
+          x._,
+        x.variableValue,
+
+        (...m: any) => ({ [m[0]]: m[4] }),
+      )
+        .sepBy(x._).skip(notFollowedBy(seq(x._, x.integer)))
+        .map((m: any) => m.reduce((_: any, v: any) => ({ ..._, ...v }), { })),
+
+      (...m: any) => ({ [m[0]]: m[4] }),
+    )
+      .sepBy(x._).skip(seq(x._, string('}')))
+      .map((m: any) => m.reduce((_: any, v: any) => ({ ..._, ...v }), { })),
+    ] as any),
+  ),
+
+  /* code */
+  code: (x: any) => seqObj(
+
+    /* rule title */
+    string('rule'),
+      x._,
+    string('('),
+      x._,
+    (['title', x.quote] as any),
+      x._,
+    string(')'),
+      x._,
+    string('{'),
+      x._,
+
+    /* rule boxes */
+    // (['code', seqMap(
+    //   x.gameSettingName,
+    //     x._,
+    //   string('{'),
+    //     x._,
+
+    //   /* code lines */
+    //   // seqMap(
+    //   //   x.code,
+    //   //   string(';'),
+    //   //   (m: any) => m,
+    //   // )
+    //   //   .sepBy(x._).skip(seq(x._, string('}'))),
+
+    //     (...m: any) => ({ [m[0]]: m[4] }),
+    // )
+    
+    // ] as any),
+    )
+    // .map((m: any) => (m))
+    .sepBy(x._).skip(seq(x._, string('}'))),
 }
 
 export {

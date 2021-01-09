@@ -3,7 +3,7 @@ const path = require('path');
 const util = require('util');
 
 
-import { blueBright, greenBright, redBright, yellowBright } from 'chalk';
+import { blueBright, greenBright, magentaBright, redBright, yellowBright } from 'chalk';
 import { parse } from './parser';
 import { workshopScript } from './parser/language/global';
 
@@ -38,24 +38,27 @@ const workshopData = execute(
 
 const display = (workshopData: any) => {
 
-  workshopData = workshopData?.settings
+  const gameData = workshopData?.settings;
+  const variables = workshopData?.variables;
   
   /* description */
   console.log(
-    'Description', 
+    redBright('•'),
+    'description', 
     `"${
       redBright(
-        workshopData?.main?.description,
+        gameData?.main?.description,
       )
     }"\n`
   )
 
   /* lobby */
   console.log(
+    yellowBright('•'),
     'lobby',
     yellowBright(
       JSON.stringify(
-        workshopData?.lobby,
+        gameData?.lobby,
         null, 2
       )
     ),
@@ -64,9 +67,10 @@ const display = (workshopData: any) => {
 
   /* modes */
   console.log(
+    greenBright('•'),
     'modes',
     `"${
-      Object.keys(workshopData?.modes)
+      Object.keys(gameData?.modes)
         .filter((m: any) => !m.startsWith('disabled'))
         .map((m: any) => greenBright(m))
         .join('", "')
@@ -75,11 +79,30 @@ const display = (workshopData: any) => {
 
   /* heroes */
   console.log(
+    blueBright('•'),
     'heroes',
-    `"${workshopData?.heroes?.General?.["enabled heroes"]
+    `"${ gameData?.heroes?.General?.["enabled heroes"]
       .map((m: any) => blueBright(m))
       .join('", "')
     }"\n`
+  )
+
+  /* variables */
+  console.log(
+    magentaBright('•'),
+    `variables ${ magentaBright('{') }\n\n  `,
+    magentaBright('•'),
+    `global "${
+      Object.values(variables?.global)
+        .map((m: any) => magentaBright(m))
+        .join('", "')
+    }"\n\n  `,
+    magentaBright('•'),
+    `player "${Object.values(variables?.player)
+      .map((m: any) => magentaBright(m))
+      .join('", "')
+    }"\n`,
+    magentaBright('}'),
   )
         
 }

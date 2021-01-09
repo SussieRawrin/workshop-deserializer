@@ -2,7 +2,7 @@ settings
 {
 	main
 	{
-		Description: "Welcome to Blizard World Escape! 4 heroes have been trapped in Blizz World and must capture objectives and find the key to escape. Best of luck! (Made by CrimsonRend) [Version 1.2.0] Check out this game on workshop.codes for more info!"
+		Description: "Welcome to \"Blizzard World Escape\"! 4 heroes have been trapped in Blizzard World and must capture objectives and find the key to escape. Best of luck! (Made by CrimsonRend) [Version 1.2.0] Check out this game on workshop.codes for more info!"
 	}
 
 	lobby

@@ -1,7 +1,7 @@
 {
   "settings": {
     "main": {
-      "description": "Welcome to \\\"Blizzard World Escape\\\"! 4 heroes have been trapped in Blizz World and must capture objectives and find the key to escape. Best of luck! (Made by CrimsonRend) [Version 1.2.0] Check out this game on workshop.codes for more info!"
+      "description": "Welcome to \\\"Blizzard World Escape\\\"! 4 heroes have been trapped in Blizzard World and must capture objectives and find the key to escape. Best of luck! (Made by CrimsonRend) [Version 1.2.0] Check out this game on workshop.codes for more info!"
     },
     "lobby": {
       "Allow Players Who Are In Queue": "Yes",
@@ -30,7 +30,6 @@
         "Hero Limit": "Off"
       },
       "Skirmish": {
-        "Hero Limit": "Off",
         "enabled maps": [
           "Blizzard World Winter",
           "Kanezaka"
@@ -90,6 +89,25 @@
           "Winston"
         ]
       }
+    }
+  },
+  "variables": {
+    "global": {
+      "0": "Map_Progression",
+      "1": "GateUnlockProgression",
+      "2": "DifficultyLevelSwitch",
+      "3": "ExpertChallengeSwitch",
+      "26": "StarPoints",
+      "27": "CrucibleOfSouls",
+      "28": "IronHeartMode",
+      "29": "IronHeart",
+      "30": "CrucicbleOfSoulsMode",
+      "31": "CursedClock",
+      "32": "CursedClockMode"
+    },
+    "player": {
+      "25": "Adrenaline",
+      "26": "Corruption"
     }
   }
 }
