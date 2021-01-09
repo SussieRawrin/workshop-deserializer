@@ -1,113 +1,162 @@
 {
   "settings": {
     "main": {
-      "description": "Welcome to \\\"Blizzard World Escape\\\"! 4 heroes have been trapped in Blizzard World and must capture objectives and find the key to escape. Best of luck! (Made by CrimsonRend) [Version 1.2.0] Check out this game on workshop.codes for more info!"
+      "description": "Ana Paintball (code ZCEZA), made by stormy#11818 • lazers, paint effects, jump pads, high scores and TONS of options :D • please import code often to get any updates and fixes • thanks ♥"
     },
     "lobby": {
       "Allow Players Who Are In Queue": "Yes",
-      "Data Center Preference": "Brazil",
       "Map Rotation": "After A Game",
       "Match Voice Chat": "Enabled",
       "Max Spectators": 12,
-      "Return To Lobby": "Never",
-      "Team Balancing": "After A Mirror Match",
-      "Use Experimental Update If Available": "Yes"
+      "Return To Lobby": "Never"
     },
     "modes": {
-      "disabled Assault": {
-        "Competitive Rules": "On",
-        "Game Mode Start": "Manual",
-        "Health Pack Respawn Time Scalar": "10%",
-        "Respawn Time Scalar": "0%"
-      },
-      "Deathmatch": {},
-      "disabled Elimination": {
-        "Game Mode Start": "Manual",
-        "Health Pack Respawn Time Scalar": "10%",
-        "Respawn Time Scalar": "0%"
+      "Deathmatch": {
+        "enabled maps": [
+          "Château Guillard",
+          "Château Guillard Halloween"
+        ]
       },
       "General": {
-        "Hero Limit": "Off"
-      },
-      "Skirmish": {
-        "enabled maps": [
-          "Blizzard World Winter",
-          "Kanezaka"
-        ]
+        "Allow Hero Switching": "Off",
+        "Game Mode Start": "Immediately",
+        "Hero Limit": "Off",
+        "Respawn As Random Hero": "On",
+        "Respawn Time Scalar": "69%",
+        "Score To Win": 50,
+        "Spawn Health Packs": "Disabled"
       }
     },
     "heroes": {
-      "Team 1": {
-        "Ashe": {
-          "Coach Gun Knockback Scalar Enemy": "75%",
-          "Coach Gun Knockback Scalar Self": "75%"
-        },
-        "Mercy": {
-          "Resurrect Cooldown Time": "200%"
-        }
-      },
-      "Team 2": {
-        "Ana": {
-          "Biotic Grenade Cooldown Time": "80%",
-          "Damage Dealt": "30%",
-          "Healing Dealt": "200%",
-          "Health": "125%",
-          "No Ammunition Requirement": "On",
-          "Projectile Speed": "275%",
-          "Sleep Dart Cooldown Time": "84%",
-          "Ultimate Generation - Combat Nano Boost": "200%",
-          "Ultimate Generation - Passive Nano Boost": "300%"
-        },
-        "Winston": {
-          "Barrier Projector Cooldown Time": "131%",
-          "Damage Dealt": "134%",
-          "Health": "50%",
-          "Jump Pack Acceleration Scalar": "80%",
-          "Jump Pack Cooldown Time": "134%",
-          "Jump Pack Knockback Scalar": "50%",
-          "Movement Speed": "105%",
-          "No Ammunition Requirement": "On",
-          "Primal Rage Melee Knockback Scalar": "50%",
-          "Primary Fire": "Off",
-          "Ultimate Duration": "120%",
-          "Ultimate Generation - Combat Primal Rage": "200%",
-          "Ultimate Generation - Passive Primal Rage": "300%"
-        },
-        "disabled heroes": [
-          "Doomfist",
-          "Lúcio"
-        ]
-      },
       "General": {
-        "Echo": {
-          "Spawn With Ultimate Ready": "On"
+        "Ultimate Ability": "Off",
+        "Ana": {
+          "Biotic Grenade": "Off",
+          "Damage Dealt": "500%",
+          "Damage Received": "500%",
+          "Health": "10%",
+          "No Ammunition Requirement": "On",
+          "Sleep Dart Cooldown Time": "8%",
+          "Ultimate Ability Nano Boost": "Off"
         },
-        "Ultimate Generation": "150%",
         "enabled heroes": [
-          "Tracer",
-          "Doomfist",
-          "Winston"
+          "Ana"
         ]
       }
+    },
+    "workshop": {
+      "infinite game time": "On",
+      "scoping limit": "On"
     }
   },
   "variables": {
     "global": {
-      "0": "Map_Progression",
-      "1": "GateUnlockProgression",
-      "2": "DifficultyLevelSwitch",
-      "3": "ExpertChallengeSwitch",
-      "26": "StarPoints",
-      "27": "CrucibleOfSouls",
-      "28": "IronHeartMode",
-      "29": "IronHeart",
-      "30": "CrucicbleOfSoulsMode",
-      "31": "CursedClock",
-      "32": "CursedClockMode"
+      "1": "jump_pads",
+      "26": "draw_iterator",
+      "27": "option_spawnSound",
+      "28": "option_gameInfinite",
+      "29": "option_aimDots",
+      "30": "option_jumpPads",
+      "31": "option_deathText",
+      "32": "option_gameTips",
+      "33": "option_paintBallz",
+      "34": "option_aimDotsOnlyWhenScoped",
+      "35": "option_playersShowOwnLaser",
+      "36": "option_disableMelee",
+      "37": "option_disableScoping",
+      "38": "option_disableSleepz",
+      "39": "option_disableDeath",
+      "40": "option_waterForgiveness",
+      "41": "option_scopeLimitOn",
+      "42": "option_scopeLimitDelay",
+      "43": "defaultColors",
+      "44": "serverTime"
     },
     "player": {
-      "25": "Adrenaline",
-      "26": "Corruption"
+      "2": "isFocusing",
+      "3": "d",
+      "4": "ks",
+      "5": "maxks",
+      "6": "sleeps",
+      "7": "punch",
+      "8": "unscopedHits",
+      "24": "_paint_ballz",
+      "26": "color",
+      "27": "_textCache",
+      "28": "_effectCache",
+      "29": "_bossCache",
+      "30": "_timerScoping",
+      "33": "tmp_splootPos",
+      "34": "tmp_splootOnPlayer",
+      "35": "_lastGroundPos",
+      "36": "_isAFK"
     }
-  }
+  },
+  "rules": [
+    {
+      "@default @variables": {
+        "event": [
+          "Ongoing - Global"
+        ],
+        "actions": [
+          {
+            "quote": "# default colors"
+          },
+          "Global.defaultColors = Empty Array",
+          "Modify Global Variable(defaultColors, Append To Array, Color(Purple))",
+          "Modify Global Variable(defaultColors, Append To Array, Color(Rose))",
+          "Modify Global Variable(defaultColors, Append To Array, Color(Red))",
+          "Modify Global Variable(defaultColors, Append To Array, Color(Orange))",
+          "Modify Global Variable(defaultColors, Append To Array, Color(Yellow))",
+          "Modify Global Variable(defaultColors, Append To Array, Color(Lime Green))",
+          "Modify Global Variable(defaultColors, Append To Array, Color(Green))",
+          "Modify Global Variable(defaultColors, Append To Array, Color(Turquoise))",
+          "Modify Global Variable(defaultColors, Append To Array, Color(Aqua))",
+          "Modify Global Variable(defaultColors, Append To Array, Color(Sky Blue))",
+          "Modify Global Variable(defaultColors, Append To Array, Color(Blue))",
+          "Modify Global Variable(defaultColors, Append To Array, Color(Violet))",
+          "Modify Global Variable(defaultColors, Append To Array, Color(White))",
+          "disabled Modify Global Variable(defaultColors, Append To Array, Color(Gray))",
+          "Modify Global Variable(defaultColors, Append To Array, Color(Black))",
+          "disabled Modify Global Variable(defaultColors, Append To Array, Color(Team 1))",
+          "disabled Modify Global Variable(defaultColors, Append To Array, Color(Team 2))",
+          "Chase Global Variable Over Time(serverTime, 9999, 9999, None)"
+        ]
+      }
+    },
+    {
+      "@world @options": {
+        "event": [
+          "Ongoing - Global"
+        ],
+        "actions": [
+          {
+            "quote": "@ options"
+          },
+          "Global.option_spawnSound = Workshop Setting Toggle(Custom String(\"options\"), Custom String(\"player spawn sound effect\"), True, 0)",
+          "Global.option_aimDots = Workshop Setting Toggle(Custom String(\"options\"), Custom String(\"enemy aiming laser dots\"), True, 0)",
+          "Global.option_playersShowOwnLaser = Workshop Setting Toggle(Custom String(\"options\"), Custom String(\"players can see their own scoping laser\"), True, 0)",
+          "Global.option_aimDotsOnlyWhenScoped = Workshop Setting Toggle(Custom String(\"options\"), Custom String(\"only show aiming lasers when scoped\"), True, 0)",
+          "Global.option_deathText = Workshop Setting Toggle(Custom String(\"options\"), Custom String(\"death text\"), False, 0)",
+          "Global.option_paintBallz = Workshop Setting Toggle(Custom String(\"options\"), Custom String(\"paint ballz\"), True, 0)",
+          {
+            "quote": "@ game"
+          },
+          "Global.option_gameInfinite = Workshop Setting Toggle(Custom String(\"game\"), Custom String(\"infinite game time\"), False, 0)",
+          "Global.option_waterForgiveness = Workshop Setting Toggle(Custom String(\"game\"), Custom String(\"players can't die in water\"), True,0)",
+          "Global.option_jumpPads = Workshop Setting Toggle(Custom String(\"game\"), Custom String(\"jump pads\"), True, 0)",
+          "Global.option_gameTips = Workshop Setting Toggle(Custom String(\"game\"), Custom String(\"game tips\"), True, 0)",
+          "Global.option_disableDeath = Workshop Setting Toggle(Custom String(\"game\"), Custom String(\"always respawn instantly\"), False, 0)",
+          {
+            "quote": "@ abilities"
+          },
+          "Global.option_disableMelee = Workshop Setting Toggle(Custom String(\"abilities\"), Custom String(\"disable melee\"), False, 0)",
+          "Global.option_disableScoping = Workshop Setting Toggle(Custom String(\"abilities\"), Custom String(\"disable scoping\"), False, 0)",
+          "Global.option_disableSleepz = Workshop Setting Toggle(Custom String(\"abilities\"), Custom String(\"disable sleeps\"), False, 0)",
+          "Global.option_scopeLimitOn = Workshop Setting Toggle(Custom String(\"abilities\"), Custom String(\"scoping limit\"), False, 0)",
+          "Global.option_scopeLimitDelay = Workshop Setting Real(Custom String(\"abilities\"), Custom String(\"scoping limit delay\"), 0.900,0.200, 2, 0)"
+        ]
+      }
+    }
+  ]
 }

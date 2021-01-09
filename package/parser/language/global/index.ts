@@ -1,8 +1,8 @@
-import { createLanguage } from "parsimmon";
-import { parsers } from "../animations";
+import { createLanguage } from 'parsimmon';
+import { parsers } from '../animations';
 
-const workshopScript = createLanguage(parsers).workshopScript;
+const { workshopScript } = createLanguage(parsers);
 
 export {
   workshopScript,
-}
+};

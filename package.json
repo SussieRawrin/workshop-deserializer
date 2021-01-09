@@ -5,7 +5,8 @@
   "author": "Stormy",
   "scripts": {
     "start": "tsc && node dist/app.js",
-    "lint": "eslint ./package --ext .ts"
+    "lint": "eslint ./package --ext .ts",
+    "mint": "eslint ./package --ext .ts --fix"
   },
   "devDependencies": {
     "@types/node": "^14.14.20",
