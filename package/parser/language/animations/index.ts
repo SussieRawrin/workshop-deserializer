@@ -1,4 +1,4 @@
-import { createLanguage, optWhitespace, whitespace } from "parsimmon";
+import { alt, createLanguage, optWhitespace, seq, seqMap, whitespace } from "parsimmon";
 import { boxes } from "./boxes";
 import { values } from "./values";
 import { words } from "./words";
@@ -17,8 +17,25 @@ const parsers = {
   ...{
     /* main parser */
     /* workshop: (x: any) => x.workshopScript, */
-    workshopScript: (x: any) => x.group,
-    ws: (x: any) => x.workshopScript,
+    // workshopScript: (x: any) => x.group,
+    workshopScript: (x: any) => seqMap(
+      alt(
+        x.group,
+          x._,
+      ),
+        x._,
+      alt(
+        x.variables,
+          x._,
+      ),
+        x._,
+      alt(
+        x.code,
+      ),
+      ((...m: any) => ([m[0], m[2]])),
+    )
+      .map((m: any) => m.reduce((_: any, v: any) => ({ ..._, ...v }), { })),
+    // ws: (x: any) => x.workshopScript,
   },
 
   ...{
