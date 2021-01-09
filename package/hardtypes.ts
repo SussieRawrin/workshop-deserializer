@@ -1,4 +1,3 @@
-
 /* box names that contain only tuples */
 
 /*
@@ -17,4 +16,4 @@ export const listNames = Object.freeze([
 
 export const hardTypes = {
   listNames,
-}
+};
