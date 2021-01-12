@@ -1,5 +1,5 @@
 import {
-  alt, regexp, seq, seqObj, string,
+  alt, lookahead, makeFailure, makeSuccess, Parser, regexp, seq, seqObj, string,
 } from 'parsimmon';
 
 const values = {
@@ -36,8 +36,40 @@ const values = {
 
   // TODO : allow multiline comments with linebreaks
 
-  codex: () => regexp(/.+(?=;)/),
+  // codeX: (x: any) => alt(
+  //   x.quote,
+  //   regexp(/[^;]+/),
+  // ).sepBy(x._).skip(seq(x._, lookahead(string(';')))),
 
+  // codex: () => regexp(/.+(?=;)/),
+  // todo make this a regex
+  // "code x" (matches any character up until a non-quoted ";")
+  codeX: ((/* s: string */) => Parser((s: string, _i: number) => {
+    const done = false;
+    let i = _i;
+    let inquotes = false;
+
+    while (!done) {
+
+      if (s.charAt(i) === ';' && !inquotes) {
+        return makeSuccess(i + 1, s.substring(_i, i)) as any;
+      }
+
+      if (s.charAt(i) === '"' && s.charAt(i - 1) !== '\\') {
+        inquotes = !inquotes;
+      }
+
+      if (s.charAt(i) === '}' && !inquotes) {
+        return makeFailure(i, "Found '}'");
+      }
+
+      if (i > s.length) {
+        return makeFailure(i, "Didn't find an end to this code block! :(");
+      }
+
+      i++;
+    }
+  })),
 };
 
 export {

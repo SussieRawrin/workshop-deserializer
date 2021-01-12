@@ -1,6 +1,7 @@
 import {
   blueBright, greenBright, magentaBright, redBright, yellow, yellowBright,
 } from 'chalk';
+import { makeFailure, makeSuccess, Parser } from 'parsimmon';
 
 import { parse } from './parser';
 import { workshopScript } from './parser/language/global';
@@ -80,14 +81,16 @@ const display = (workshopData: any) => {
   );
 
   /* heroes */
-  console.log(
-    blueBright('•'),
-    'heroes',
-    `"${gameData?.heroes?.General?.['enabled heroes']
-      .map((m: any) => blueBright(m))
-      .join('", "')
-    }"\n`,
-  );
+  if (gameData?.heroes) {
+    console.log(
+      blueBright('•'),
+      'heroes',
+      `"${gameData?.heroes?.General?.['enabled heroes']
+        .map((m: any) => blueBright(m))
+        .join('", "')
+      }"\n`,
+    );
+  }
 
   /* variables */
   console.log(
@@ -104,7 +107,7 @@ const display = (workshopData: any) => {
       .map((m: any) => magentaBright(m))
       .join('", "')
     }"\n`,
-    magentaBright('}\n'),
+    magentaBright('\n}\n'),
   );
 
   /* rules */
