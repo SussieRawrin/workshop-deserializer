@@ -79,7 +79,10 @@ const boxes = {
   code: (x: any) => seqObj(
 
     /* rule title */
-    string('rule'),
+    alt(
+      string('rule'),
+      string('disabled rule'),
+    ),
     x._,
     string('('),
     x._,
@@ -101,11 +104,11 @@ const boxes = {
       /* code lines */
       alt(
         x.quote,
-        seqMap(
-          x.codex,
-          string(';'),
-          (m: any) => m,
-        ),
+        // seqMap(
+        x.codeX,
+        // string(';'),
+        // (m: any) => m,
+        // ),
       )
         .sepBy(x._).skip(seq(x._, lookahead('}'))),
 
@@ -126,6 +129,7 @@ const boxes = {
     .map((m: any) => m.map((z: any) => ({ [z.title]: z.code }))),
 
   /* they allow 2 rules with the same title, so i can't do this D: */
+  // TODO add a comment? uwu
   // .map((m: any) => m.reduce((_: any, v: any) => ({ ..._, ...v }), { })),
 
   // .map((m: any) => ({ [m.title]: m.code })),
