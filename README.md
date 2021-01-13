@@ -15,7 +15,7 @@ https://www.npmjs.com/package/@workshopcodes/deserializer
 ## Usage Code
 * This JavaScript code shows how you could parse and combinate a text file containing an entire copied workshop game code. 
 ```javascript
-const { WorkshopDeserialize } = require('@workshopcodes/workshop-deserializer')
+const { WorkshopDeserialize } = require('@workshopcodes/deserializer')
 
 const fs = require('fs');
 const path = require('path');
