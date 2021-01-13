@@ -1,5 +1,5 @@
 {
-  "name": "@workshopcodes/workshop-deserializer",
+  "name": "@workshopcodes/deserializer",
   "version": "0.0.2",
   "description": "A JSON deserializer for Overwatch Workshop game settings",
   "author": "stormyy_ow",
