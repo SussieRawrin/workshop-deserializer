@@ -1,5 +1,6 @@
 # @workshopcodes/deserializer
 A parser-combinator for Overwatch Workshop Settings (Overwatch Workshop Config -> (TypeScript, JavaScript, JSON)
+https://www.npmjs.com/package/@workshopcodes/deserializer
 
 ## What is this?
 * It takes C++ formatted Overwatch Workshop game settings and converts it to a JSON object. Probably only need if you want to get data from an overwatch settings text file for some reason.
