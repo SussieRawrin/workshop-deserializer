@@ -1,5 +1,5 @@
 import {
-  alt, digits, eof, lookahead, notFollowedBy, seq, seqMap, seqObj, string,
+  alt as choice, digits, eof, lookahead, notFollowedBy, seq, seqMap, seqObj, string,
 } from 'parsimmon';
 import { hardTypes } from '../../../hardtypes';
 
@@ -16,7 +16,7 @@ const boxes = {
 
     /* matches any *words* inside a box, also "mapHeroName" empty boxes */
     /* (ex. "{ Secondary Cooldown: 20% }") */
-    (['box', alt(
+    (['box', choice(
       x.gameSetting,
       x.description,
       x.group,
@@ -79,7 +79,7 @@ const boxes = {
   code: (x: any) => seqObj(
 
     /* rule title */
-    alt(
+    choice(
       string('rule'),
       string('disabled rule'),
     ),
@@ -102,7 +102,7 @@ const boxes = {
       x._,
 
       /* code lines */
-      alt(
+      choice(
         x.quote,
         // seqMap(
         x.codeX,

@@ -1,5 +1,5 @@
 import {
-  alt, lookahead, makeFailure, makeSuccess, Parser, regexp, seq, seqObj, string,
+  alt as choice, lookahead, makeFailure, makeSuccess, Parser, regexp, seq, seqObj, string,
 } from 'parsimmon';
 
 const values = {
@@ -18,7 +18,7 @@ const values = {
   gameSettingName: () => regexp(/[\p{L} -]+(?<! )/u),
 
   /* "gameSettingValue" (Allows: ['9%', <gameSettingName>, 9]) */
-  gameSettingValue: (x: any) => alt(
+  gameSettingValue: (x: any) => choice(
     seq(x.digits, string('%')).tie(),
     x.gameSettingName,
     x.integer,
