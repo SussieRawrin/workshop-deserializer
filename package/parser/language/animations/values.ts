@@ -12,10 +12,10 @@ const values = {
   ),
 
   /* "mapHeroName" (Allows: [' ', 'â', 'a', ':', '(', ')'], not ending with ' ') */
-  mapHeroName: () => regexp(/[\p{L} ():0-9]+(?<! )/u),
+  mapHeroName: () => regexp(/[\p{L} ():0-9]+(?<!\s)/u),
 
   /* "gameSettingName" (Allows: [' ', 'â', 'a'], not ending with ' ') */
-  gameSettingName: () => regexp(/[\p{L} -]+(?<! )/u),
+  gameSettingName: () => regexp(/[\p{L} -]+(?<!\s)/u),
 
   /* "gameSettingValue" (Allows: ['9%', <gameSettingName>, 9]) */
   gameSettingValue: (x: any) => choice(
@@ -55,8 +55,22 @@ const values = {
         return makeSuccess(i + 1, s.substring(_i, i)) as any;
       }
 
-      if (s.charAt(i) === '"' && s.charAt(i - 1) !== '\\') {
-        inquotes = !inquotes;
+      /* x("\""), x("\\") */
+      if (s.charAt(i) === '"') {
+
+        if (s.charAt(i - 1) === '\\') {
+          let escapes = 1;
+
+          while (s.charAt(i - 1 - escapes) === '\\') {
+            escapes += 1;
+          }
+
+          if (escapes % 2 === 0) {
+            inquotes = !inquotes;
+          }
+        } else {
+          inquotes = !inquotes;
+        }
       }
 
       if (s.charAt(i) === '}' && !inquotes) {
