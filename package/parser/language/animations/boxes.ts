@@ -149,8 +149,8 @@ const boxes = {
     x._,
     string('}'),
   )
-    .sepBy(x._).skip(seq(x._, eof))
-    .map((m: any) => m.map((z: any) => ({ [z.title]: z.code }))),
+    .sepBy(x._).skip(seq(x._, eof)),
+  // .map((m: any) => m.map(({ title, code }) => ({ title, code }))),
 
   /* they allow 2 rules with the same title, so i can't do this D: */
   // TODO add a comment? uwu
