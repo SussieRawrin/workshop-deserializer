@@ -7,6 +7,7 @@ declare const parsers: {
         [x: number]: any;
     }>;
     variables: (x: any) => import("parsimmon").Parser<{}>;
+    methods: (x: any) => import("parsimmon").Parser<{}>;
     code: (x: any) => import("parsimmon").Parser<any>;
     description: (x: any) => import("parsimmon").Parser<{}>;
     gameSetting: (x: any) => import("parsimmon").Parser<{

@@ -4,6 +4,7 @@ declare const boxes: {
         [x: number]: any;
     }>;
     variables: (x: any) => import("parsimmon").Parser<{}>;
+    methods: (x: any) => import("parsimmon").Parser<{}>;
     code: (x: any) => import("parsimmon").Parser<any>;
 };
 export { boxes, };
