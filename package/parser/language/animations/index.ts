@@ -21,6 +21,7 @@ const parsers = {
     /* workshop: (x: any) => x.workshopScript, */
     // workshopScript: (x: any) => x.group,
     workshopScript: (x: any) => seqMap(
+      /* todo: do something different if it's "actions" (two code) */
       alt(
         x.group,
         x._,
@@ -32,11 +33,15 @@ const parsers = {
       ),
       x._,
       alt(
+        x.methods,
+        x._,
+      ),
+      x._,
+      alt(
         x.code,
         x._,
       ),
-      // TODO escaped code ;
-      ((...m: any) => ([m[0], m[2], { rules: m[4] }])),
+      ((...m: any) => ([m[0], m[2], m[4], (m[6].length) ? { rules: m[6] } : undefined])),
     )
       .map((m: any) => m.reduce((_: any, v: any) => ({ ..._, ...v }), { })),
     // ws: (x: any) => x.workshopScript,

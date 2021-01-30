@@ -17,22 +17,23 @@ const boxes = {
     /* matches any *words* inside a box, also "mapHeroName" empty boxes */
     /* (ex. "{ Secondary Cooldown: 20% }") */
     (['box', choice(
-      x.gameSetting,
+      x.gameSetting.notFollowedBy(seq(x._, string('{'))),
       x.description,
       x.group,
 
       /* catches any standalone words (ex. "Deathmatch" w/ no option box) */
       x.mapHeroName.map((m: any) => ({ [m]: {} })),
     )
-      .sepBy(x._).skip(seq(x._, string('}')))
+      // TODO tidy
+      .sepBy(x._).skip((seq(x._, string('}'))))
 
     /* merge all individual items into a single object */
-      .map((x: any) => x.reduce((_: any, v: any) => ({ ..._, ...v }), { }))
+      .map((m: any) => m.reduce((_: any, v: any) => ({ ..._, ...v }), { }))
 
     /* display hardcoded boxes as tuples (ex. "disabled heroes", "disabled maps") */
-      .map((x: any) => ({
-        ...x,
-        ...Object.entries(x)
+      .map((m: any) => ({
+        ...m,
+        ...Object.entries(m)
           .filter(([k, v]) => hardTypes.listNames.includes(k))
           .map(([k, v]) => ({ [k]: Object.keys(v as any) }))
           .reduce((_: any, v: any) => ({ ..._, ...v }), { }),
@@ -73,6 +74,29 @@ const boxes = {
       .sepBy(x._).skip(seq(x._, string('}')))
       .map((m: any) => m.reduce((_: any, v: any) => ({ ..._, ...v }), { })),
     ] as any),
+  ),
+
+  /* methods ("subroutines") */
+  methods: (x: any) => seqObj(
+    string('subroutines'),
+    x._,
+    string('{'),
+    x._,
+    // (['methods', seqMap(
+    (['subroutines', seqMap(
+      x.integer,
+      x._,
+      string(':'),
+      x._,
+      x.variableValue,
+
+      (...m: any) => ({ [m[0]]: m[4] }),
+    )
+      .sepBy(x._).skip(notFollowedBy(seq(x._, x.integer)))
+      .map((m: any) => m.reduce((_: any, v: any) => ({ ..._, ...v }), {})),
+    ] as any),
+    x._,
+    string('}'),
   ),
 
   /* code */
