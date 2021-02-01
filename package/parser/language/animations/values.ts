@@ -11,8 +11,8 @@ const values = {
     string('"'),
   ),
 
-  /* "mapHeroName" (Allows: [' ', 'â', 'a', ':', '(', ')', 'D.Va'], not ending with ' ') */
-  mapHeroName: () => regexp(/[\p{L} .():0-9]+(?<!\s)/u),
+  /* "mapHeroName" (Allows: [' ', 'â', 'a', ':', '(', ')', 'D.Va', "King's Row"], not ending with ' ') */
+  mapHeroName: () => regexp(/[\p{L} '.():0-9]+(?<!\s)/u),
 
   /* "gameSettingName" (Allows: [' ', 'â', 'a', 'Halt!'], not ending with ' ') */
   gameSettingName: () => regexp(/[\p{L} !-]+(?<!\s)/u),
