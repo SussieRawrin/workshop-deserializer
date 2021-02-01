@@ -1,1 +1,1 @@
-{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../../../package/parser/language/animations/index.ts"],"names":[],"mappings":";AAOA,QAAA,MAAM,OAAO;;;wBAeW,GAAG;;;;;;;;;;;;;;;;;;;CAmC1B,CAAC;AAEF,OAAO,EACL,OAAO,GACR,CAAC"}
+{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../../../package/parser/language/animations/index.ts"],"names":[],"mappings":";AAOA,QAAA,MAAM,OAAO;;;wBAeW,GAAG;;;;;;;;;;;;;;;;;;;;CAmC1B,CAAC;AAEF,OAAO,EACL,OAAO,GACR,CAAC"}

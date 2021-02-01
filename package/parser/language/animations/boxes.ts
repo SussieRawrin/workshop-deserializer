@@ -1,5 +1,5 @@
 import {
-  alt as choice, digits, eof, lookahead, notFollowedBy, seq, seqMap, seqObj, string,
+  alt as choice, digits, eof, letters, lookahead, notFollowedBy, seq, seqMap, seqObj, string,
 } from 'parsimmon';
 import { hardTypes } from '../../../hardtypes';
 
@@ -120,7 +120,7 @@ const boxes = {
     /* rule boxes */
     // TODO optional
     (['code', seqMap(
-      x.gameSettingName,
+      letters,
       x._,
       string('{'),
       x._,

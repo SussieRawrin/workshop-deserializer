@@ -19,6 +19,7 @@ declare const parsers: {
     gameSettingValue: (x: any) => import("parsimmon").Parser<string>;
     variableValue: (x: any) => import("parsimmon").Parser<string>;
     integer: () => import("parsimmon").Parser<number>;
+    float: () => import("parsimmon").Parser<number>;
     digits: () => import("parsimmon").Parser<string>;
     codeX: () => import("parsimmon").Parser<unknown>;
 };

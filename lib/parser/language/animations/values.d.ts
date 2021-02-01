@@ -6,6 +6,7 @@ declare const values: {
     gameSettingValue: (x: any) => Parser<string>;
     variableValue: (x: any) => Parser<string>;
     integer: () => Parser<number>;
+    float: () => Parser<number>;
     digits: () => Parser<string>;
     codeX: () => Parser<unknown>;
 };
