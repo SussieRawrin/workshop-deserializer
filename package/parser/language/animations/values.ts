@@ -14,8 +14,8 @@ const values = {
   /* "mapHeroName" (Allows: [' ', 'â', 'a', ':', '(', ')', 'D.Va', "King's Row"], not ending with ' ') */
   mapHeroName: () => regexp(/[\p{L} '.():0-9]+(?<!\s)/u),
 
-  /* "gameSettingName" (Allows: [' ', 'â', 'a', 'Halt!'], not ending with ' ') */
-  gameSettingName: () => regexp(/[\p{L} !-]+(?<!\s)/u),
+  /* "gameSettingName" (Allows: [' ', 'â', 'a', 'Halt!', 'passive B.O.B'], not ending with ' ') */
+  gameSettingName: () => regexp(/[\p{L} .!-]+(?<!\s)/u),
 
   /* "gameSettingValue" (Allows: ['9%', <gameSettingName>, 9]) */
   gameSettingValue: (x: any) => choice(
