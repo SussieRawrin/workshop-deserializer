@@ -14,13 +14,15 @@ const values = {
   /* "mapHeroName" (Allows: [' ', 'â', 'a', ':', '(', ')', 'D.Va', "King's Row"], not ending with ' ') */
   mapHeroName: () => regexp(/[\p{L} '.():0-9]+(?<!\s)/u),
 
-  /* "gameSettingName" (Allows: [' ', 'â', 'a', 'Halt!', 'passive B.O.B'], not ending with ' ') */
-  gameSettingName: () => regexp(/[\p{L} .!-]+(?<!\s)/u),
+  /* "gameSettingName" (Allows: [' ', 'â', 'a', 'Halt!', 'passive B.O.B', 'configuration: tank'], not ending with ' ') */
+  /* temorary fix: "must have a : after it" */
+  gameSettingName: () => regexp(/([\p{L} :.!-])+(?=:[^:]+)/u),
 
   /* "gameSettingValue" (Allows: ['9%', <gameSettingName>, 9]) */
   gameSettingValue: (x: any) => choice(
     seq(x.digits, string('%')).tie(),
     x.gameSettingName,
+    x.float,
     x.integer,
   ),
 
@@ -28,6 +30,8 @@ const values = {
 
   /* "integer" (Parses at least one number digit, outputs <number>) */
   integer: () => regexp(/[0-9]+/).map((x) => Number(x)),
+
+  float: () => regexp(/[0-9.]+/).map((x) => Number(x)),
 
   /* "digits" (Parses at least one number digit, outputs <string>number) */
   digits: () => regexp(/[0-9]+/),
