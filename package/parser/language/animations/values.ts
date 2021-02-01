@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import {
   alt as choice, lookahead, makeFailure, makeSuccess, Parser, regexp, seq, seqObj, string,
 } from 'parsimmon';
@@ -25,6 +26,10 @@ const values = {
     x.float,
     x.integer,
   ),
+
+  /* player defined workshop setting names */
+  /* names of workshop settings may not be blank and may not contain '{', '}', ':' */
+  workshopSettingName: (x: any) => regexp(/[^:{}]+/),
 
   variableValue: (x: any) => regexp(/[A-z0-9_]+/),
 

@@ -1,4 +1,6 @@
-import { seqMap, seqObj, string } from 'parsimmon';
+import {
+  alt as choice, seqMap, seqObj, string,
+} from 'parsimmon';
 
 const words = {
 
@@ -11,7 +13,10 @@ const words = {
 
   /* "gameSetting" (Matches ["Secondary Cooldown: 9%", "Ecopoint: Antartica", "Max Players: 8") */
   gameSetting: (x: any) => seqMap(
-    x.gameSettingName,
+    choice(
+      x.gameSettingName,
+      x.workshopSettingName,
+    ),
     x._,
     string(':'),
     x._,
