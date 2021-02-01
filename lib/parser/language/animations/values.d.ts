@@ -4,6 +4,7 @@ declare const values: {
     mapHeroName: () => Parser<string>;
     gameSettingName: () => Parser<string>;
     gameSettingValue: (x: any) => Parser<string>;
+    workshopSettingName: (x: any) => Parser<string>;
     variableValue: (x: any) => Parser<string>;
     integer: () => Parser<number>;
     float: () => Parser<number>;

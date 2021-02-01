@@ -1,6 +1,6 @@
 {
   "name": "@workshopcodes/deserializer",
-  "version": "0.6.4",
+  "version": "1.2.8",
   "description": "A JSON deserializer for Overwatch Workshop game settings",
   "author": "stormyy_ow",
   "repository": {

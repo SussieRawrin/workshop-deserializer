@@ -17,6 +17,7 @@ declare const parsers: {
     mapHeroName: () => import("parsimmon").Parser<string>;
     gameSettingName: () => import("parsimmon").Parser<string>;
     gameSettingValue: (x: any) => import("parsimmon").Parser<string>;
+    workshopSettingName: (x: any) => import("parsimmon").Parser<string>;
     variableValue: (x: any) => import("parsimmon").Parser<string>;
     integer: () => import("parsimmon").Parser<number>;
     float: () => import("parsimmon").Parser<number>;
